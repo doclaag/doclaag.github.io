@@ -1,3 +1,79 @@
+# Tema y plugins
 remote_theme: pages-themes/hacker@v0.2.0
 plugins:
-- jekyll-remote-theme 
+  - jekyll-remote-theme
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Información del sitio
+title: "Luis Alonzo - Web Developer"
+description: "Passionate web developer from Guatemala specializing in React, PHP, and modern web technologies"
+author: "Luis Alonzo"
+email: "contacto@doclaag.com"
+url: "https://doclaag.github.io"
+baseurl: ""
+
+# SEO y redes sociales
+twitter:
+  username: doclaag
+  card: summary
+
+social:
+  name: Luis Alonzo
+  links:
+    - https://twitter.com/doclaag
+    - https://linkedin.com/in/doclaag
+    - https://facebook.com/doclaag
+    - https://instagram.com/doclaag
+
+# Configuración de GitHub
+github:
+  username: doclaag
+  repository_url: https://github.com/doclaag
+
+# Configuración del sitio
+lang: en-US
+timezone: America/Guatemala
+
+# Markdown
+markdown: kramdown
+highlighter: rouge
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
+# Configuración de archivos
+include:
+  - _pages
+  - assets
+
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - vendor/bundle/
+  - vendor/cache/
+  - vendor/gems/
+  - vendor/ruby/
+  - README.md
+
+# Configuración de colecciones
+collections:
+  projects:
+    output: true
+    permalink: /:collection/:name/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "Luis Alonzo"
+  - scope:
+      path: ""
+      type: "projects"
+    values:
+      layout: "project"
