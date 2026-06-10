@@ -1,0 +1,39 @@
+---
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import { socials } from '../data/site';
+
+const t = useTranslations(getLangFromUrl(Astro.url));
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line">
+  <div
+    class="mx-auto flex max-w-5xl flex-col items-center justify-between gap-4 px-5 py-10 sm:flex-row sm:px-8"
+  >
+    <p class="font-mono text-xs text-faint">
+      © {year} Luis Alonzo · {t('footer.rights')}
+      <a
+        href="https://github.com/doclaag/doclaag.github.io"
+        class="text-muted underline-offset-4 transition-colors hover:text-accent hover:underline"
+        >GitHub</a
+      >
+    </p>
+    <ul class="flex items-center gap-4">
+      {
+        socials.map((social) => (
+          <li>
+            <a
+              href={social.url}
+              aria-label={social.name}
+              class="text-muted transition-colors hover:text-accent"
+            >
+              <svg class="size-5" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d={social.iconPath} />
+              </svg>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</footer>

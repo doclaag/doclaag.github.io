@@ -1,0 +1,64 @@
+---
+title: 'Tipado de extremo a extremo: contratos de API entre Laravel y TypeScript'
+description: 'Un patrón práctico para mantener honestos a un backend en Laravel y un frontend en TypeScript, sin reescribir todo como monorepo.'
+pubDate: 2026-05-28
+lang: 'es'
+translationKey: 'typed-apis-laravel-typescript'
+---
+
+La mayoría de mis proyectos son una pareja: un frontend en TypeScript y un backend — a veces Node, muchas veces Laravel. El modo de falla recurrente es el mismo en todos lados: el backend cambia la forma de una respuesta, el frontend sigue asumiendo la anterior, y nadie se da cuenta hasta producción.
+
+Este es el patrón ligero que uso para mantener honestos a ambos lados.
+
+## 1. Que el backend declare sus formas
+
+En Laravel, toda respuesta pasa por un API Resource. Eso ya es un contrato — solo que no está escrito en ningún lugar que un compilador pueda ver:
+
+```php
+class PatientResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'fullName' => $this->full_name,
+            'admittedAt' => $this->admitted_at?->toIso8601String(),
+        ];
+    }
+}
+```
+
+## 2. Reflejar el contrato como tipo de TypeScript
+
+```ts
+export interface Patient {
+  id: number;
+  fullName: string;
+  admittedAt: string | null;
+}
+```
+
+La disciplina clave: este tipo vive en un archivo por recurso, nombrado igual que el resource del backend, y **nada más en el frontend puede describir formas de la API**. Los componentes importan el tipo; nunca re-declaran campos.
+
+## 3. Validar en la frontera, no en todas partes
+
+Los tipos se borran en runtime, así que el único lugar donde agrego validación en tiempo de ejecución es la capa de fetch:
+
+```ts
+const patientSchema = z.object({
+  id: z.number(),
+  fullName: z.string(),
+  admittedAt: z.string().nullable(),
+});
+
+export async function getPatient(id: number): Promise<Patient> {
+  const res = await api.get(`/patients/${id}`);
+  return patientSchema.parse(res.data);
+}
+```
+
+Si el backend se desvía, el error ocurre en la frontera con un mensaje claro — no tres componentes adentro como `undefined is not a function`.
+
+## ¿Por qué no generar desde OpenAPI?
+
+Generar código desde una especificación OpenAPI es la respuesta más pesada y más correcta, y vale la pena en equipos grandes. Para un proyecto de dos personas, el patrón de espejo + zod cuesta minutos de mantenimiento y atrapa la misma clase de bugs. El punto no es la herramienta: es que exactamente un lugar define cada forma en cada lado, y la frontera verifica el acuerdo.

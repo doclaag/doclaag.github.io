@@ -1,0 +1,34 @@
+[
+  {
+    "id": "fullstack-dev",
+    "role": {
+      "en": "Full Stack Developer",
+      "es": "Desarrollador Full Stack"
+    },
+    "company": "Company Name",
+    "start": "2023",
+    "end": null,
+    "summary": {
+      "en": "Building and maintaining full-stack web applications with TypeScript, React and Node.js — from data models and typed APIs to production deployment.",
+      "es": "Construcción y mantenimiento de aplicaciones web full-stack con TypeScript, React y Node.js: desde modelos de datos y APIs tipadas hasta el despliegue a producción."
+    },
+    "tech": ["TypeScript", "React", "Node.js", "PostgreSQL"],
+    "placeholder": true
+  },
+  {
+    "id": "web-dev",
+    "role": {
+      "en": "Web Developer",
+      "es": "Desarrollador Web"
+    },
+    "company": "Previous Company",
+    "start": "2021",
+    "end": "2023",
+    "summary": {
+      "en": "Developed internal tools and client-facing sites with PHP/Laravel and JavaScript; introduced automated testing and version-control workflows.",
+      "es": "Desarrollo de herramientas internas y sitios para clientes con PHP/Laravel y JavaScript; introduje pruebas automatizadas y flujos de control de versiones."
+    },
+    "tech": ["PHP", "Laravel", "MySQL", "JavaScript"],
+    "placeholder": true
+  }
+]

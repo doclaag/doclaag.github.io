@@ -1,0 +1,86 @@
+---
+import { Font } from 'astro:assets';
+import Seo from '../components/Seo.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { getLangFromUrl, useTranslations } from '../i18n/utils';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  altPath: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown>;
+}
+
+const { title, description, altPath, type, jsonLd } = Astro.props;
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="alternate"
+      type="application/rss+xml"
+      title="Luis Alonzo"
+      href={lang === 'en' ? '/rss.xml' : '/es/rss.xml'}
+    />
+    <script is:inline>
+      // Runs before paint: theme class + .js gate for reveal animations,
+      // so no-JS visitors always see content.
+      (() => {
+        const stored = localStorage.getItem('theme');
+        const theme =
+          stored ?? (matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+        document.documentElement.classList.toggle('dark', theme === 'dark');
+        document.documentElement.classList.add('js');
+      })();
+    </script>
+    {/* Preload only the faces visible above the fold. */}
+    <Font cssVariable="--font-inter" preload={[{ weight: 400 }]} />
+    <Font cssVariable="--font-space-grotesk" preload={[{ weight: 700 }]} />
+    <Font cssVariable="--font-jetbrains-mono" preload={[{ weight: 400 }]} />
+    <Seo title={title} description={description} altPath={altPath} type={type} jsonLd={jsonLd} />
+  </head>
+  <body class="min-h-dvh">
+    <a
+      href="#main"
+      class="sr-only z-50 rounded-md bg-accent px-4 py-2 font-mono text-sm text-bg focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      {t('nav.skipToContent')}
+    </a>
+    <Header altPath={altPath} />
+    <main id="main">
+      <slot />
+    </main>
+    <Footer />
+    <script>
+      // Reveal-on-scroll: ~15 lines, the only other client JS on the site.
+      const motionOk = matchMedia('(prefers-reduced-motion: no-preference)').matches;
+      const targets = document.querySelectorAll('[data-reveal]');
+      if (motionOk && 'IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target);
+              }
+            }
+          },
+          { rootMargin: '0px 0px -10% 0px' },
+        );
+        targets.forEach((el) => observer.observe(el));
+      } else {
+        targets.forEach((el) => el.classList.add('is-visible'));
+      }
+    </script>
+  </body>
+</html>

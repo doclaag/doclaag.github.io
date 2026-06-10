@@ -1,0 +1,341 @@
+{
+  "fetchedAt": "2026-06-10T17:12:00Z",
+  "source": "github-search-snapshot",
+  "user": {
+    "login": "doclaag",
+    "publicRepos": 79,
+    "followers": null
+  },
+  "repos": [
+    {
+      "name": "ferroconstructora-bermoli",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/ferroconstructora-bermoli",
+      "homepage": "https://ferroconstructora-bermoli.vercel.app",
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-06-09T17:28:09Z"
+    },
+    {
+      "name": "the-valley-medical-clinic-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/the-valley-medical-clinic-frontend",
+      "homepage": "https://the-valley-medical-clinic.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-06-09T02:45:17Z"
+    },
+    {
+      "name": "the-valley-medical-clinic-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/the-valley-medical-clinic-backend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-06-08T00:52:22Z"
+    },
+    {
+      "name": "la-duela-gt-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/la-duela-gt-frontend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-06-06T13:51:10Z"
+    },
+    {
+      "name": "misuper-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/misuper-frontend",
+      "homepage": "https://misuper-frontend.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-06-05T15:14:38Z"
+    },
+    {
+      "name": "la-duela-gt-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/la-duela-gt-backend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-05-31T22:13:43Z"
+    },
+    {
+      "name": "misuper-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/misuper-backend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-05-30T04:33:53Z"
+    },
+    {
+      "name": "debtflow-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/debtflow-backend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-05-06T21:28:24Z"
+    },
+    {
+      "name": "debtflow-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/debtflow-frontend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-05-06T21:28:22Z"
+    },
+    {
+      "name": "cursor-hackathon-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/cursor-hackathon-frontend",
+      "homepage": null,
+      "language": null,
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-03-07T19:39:46Z"
+    },
+    {
+      "name": "business-continuity-planning",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/business-continuity-planning",
+      "homepage": null,
+      "language": "Python",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-02-05T04:15:13Z"
+    },
+    {
+      "name": "learnspace-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/learnspace-backend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-01-14T03:50:54Z"
+    },
+    {
+      "name": "doclaag.github.io",
+      "description": "My portfolio",
+      "htmlUrl": "https://github.com/doclaag/doclaag.github.io",
+      "homepage": null,
+      "language": null,
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2026-01-01T15:38:59Z"
+    },
+    {
+      "name": "dicri-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/dicri-frontend",
+      "homepage": "https://dicri-frontend.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-11-28T18:32:23Z"
+    },
+    {
+      "name": "dicri-deploy",
+      "description": "🚀 DICRI - Sistema de Gestión de Evidencias - Instalación con Docker",
+      "htmlUrl": "https://github.com/doclaag/dicri-deploy",
+      "homepage": null,
+      "language": null,
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-11-21T20:12:15Z"
+    },
+    {
+      "name": "dicri-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/dicri-backend",
+      "homepage": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-11-20T18:12:19Z"
+    },
+    {
+      "name": "MediCalc",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/MediCalc",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-10-28T15:45:17Z"
+    },
+    {
+      "name": "secret-santa-frontend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/secret-santa-frontend",
+      "homepage": "https://secret-santa-frontend-iota.vercel.app",
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-10-25T19:07:29Z"
+    },
+    {
+      "name": "construcciones-molina-landing",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/construcciones-molina-landing",
+      "homepage": null,
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-10-25T01:57:11Z"
+    },
+    {
+      "name": "secret-santa-backend",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/secret-santa-backend",
+      "homepage": null,
+      "language": "TypeScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-10-18T18:34:48Z"
+    },
+    {
+      "name": "doclaag",
+      "description": "My profile",
+      "htmlUrl": "https://github.com/doclaag/doclaag",
+      "homepage": null,
+      "language": null,
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-07-10T17:35:13Z"
+    },
+    {
+      "name": "astro-portfolio",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/astro-portfolio",
+      "homepage": null,
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-07-09T21:40:15Z"
+    },
+    {
+      "name": "starlight",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/starlight",
+      "homepage": null,
+      "language": "MDX",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-06-06T22:05:26Z"
+    },
+    {
+      "name": "constructora-semcon",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/constructora-semcon",
+      "homepage": "https://constructora-semcon.vercel.app",
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-05-13T03:47:32Z"
+    },
+    {
+      "name": "misuper-pos-php",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/misuper-pos-php",
+      "homepage": null,
+      "language": "PHP",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2025-03-30T16:34:42Z"
+    },
+    {
+      "name": "astro-construcciones-molina-jucup",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/astro-construcciones-molina-jucup",
+      "homepage": "https://construcciones-molina-jucup.vercel.app",
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2024-10-04T21:42:38Z"
+    },
+    {
+      "name": "astro-construsoluciones-cifuentes",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/astro-construsoluciones-cifuentes",
+      "homepage": "https://construsoluciones-cifuentes.vercel.app/",
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2024-10-04T21:38:11Z"
+    },
+    {
+      "name": "astro-construsoluciones-cifuentes-chalip",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/astro-construsoluciones-cifuentes-chalip",
+      "homepage": "https://astro-construsoluciones-cifuentes-chalip.vercel.app",
+      "language": "Astro",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2024-10-04T21:37:05Z"
+    },
+    {
+      "name": "journal-app",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/journal-app",
+      "homepage": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2024-08-07T15:48:17Z"
+    },
+    {
+      "name": "rick-and-morty-api",
+      "description": null,
+      "htmlUrl": "https://github.com/doclaag/rick-and-morty-api",
+      "homepage": null,
+      "language": "JavaScript",
+      "topics": [],
+      "stars": 0,
+      "forks": 0,
+      "pushedAt": "2024-07-21T03:45:44Z"
+    }
+  ]
+}

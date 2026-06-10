@@ -1,0 +1,46 @@
+---
+title: 'Building this site with Astro 6 and Tailwind CSS v4'
+description: 'Why I rebuilt my portfolio from a Jekyll theme to Astro 6 with Tailwind v4, built-in i18n, and almost zero client-side JavaScript.'
+pubDate: 2026-06-10
+lang: 'en'
+translationKey: 'building-this-site'
+---
+
+My old site was a three-file Jekyll setup: a markdown page, a config, and a remote theme. It worked, but it was somebody else's design, it loaded slow third-party stat images, and adding anything — a blog, a second language, a projects section — meant fighting the theme.
+
+So I rebuilt it from scratch with **Astro 6**. Here is what shaped the stack.
+
+## Zero JavaScript by default
+
+A portfolio is content. Astro renders everything to static HTML at build time and ships no JavaScript unless you ask for it. The total client-side JS on this site is under a kilobyte: a theme toggle and a tiny IntersectionObserver for reveal-on-scroll animations. Page transitions are handled by pure-CSS cross-document view transitions — no client router at all.
+
+## Tailwind CSS v4, CSS-first
+
+Tailwind v4 dropped the JavaScript config file. The whole design system lives in one CSS file:
+
+```css
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-accent: var(--c-accent);
+}
+```
+
+Semantic CSS variables flip between light and dark on a single `.dark` class, and Tailwind utilities pick them up automatically. No `tailwind.config.js`, no plugin pipeline.
+
+## Built-in i18n
+
+This site is bilingual — English at `/`, Spanish at `/es/`. Astro's built-in i18n routing handles the URL structure, and a small typed dictionary handles UI strings:
+
+```ts
+const es: Record<UIKey, string> = {
+  /* missing a key = compile error */
+};
+```
+
+If I add an English string and forget the Spanish one, the build fails. That is the kind of i18n bookkeeping I want a compiler to do.
+
+## GitHub data at build time
+
+The projects section merges a curated list with live metadata from the GitHub API — fetched once per build, never in the browser. If the API is unavailable, the build falls back to a committed snapshot, so deploys never break. A weekly scheduled build keeps the data fresh.
+
+The result: a site that scores green across the board on Lighthouse, costs nothing to host on GitHub Pages, and is finally mine to design.

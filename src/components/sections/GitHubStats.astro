@@ -1,0 +1,58 @@
+---
+import Reveal from '../Reveal.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { getGitHubData, getLanguageStats } from '../../lib/github';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const { user } = await getGitHubData();
+const languages = await getLanguageStats();
+
+const stats = [
+  { label: t('stats.repos'), value: user.publicRepos },
+  ...(user.followers != null ? [{ label: t('stats.followers'), value: user.followers }] : []),
+];
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16 sm:px-8">
+  <Reveal>
+    <SectionHeading index="06" title={t('stats.title')} />
+    <div class="grid gap-10 md:grid-cols-[1fr_2fr]">
+      <dl class="flex gap-10 md:flex-col md:gap-8">
+        {
+          stats.map((stat) => (
+            <div>
+              <dd class="font-display text-4xl font-bold text-ink">{stat.value}</dd>
+              <dt class="mt-1 font-mono text-xs text-faint">{stat.label}</dt>
+            </div>
+          ))
+        }
+      </dl>
+      <div>
+        <h3 class="mb-4 font-mono text-xs tracking-widest text-faint uppercase">
+          {t('stats.languages')}
+        </h3>
+        <ul class="space-y-3">
+          {
+            languages.map((entry) => (
+              <li>
+                <div class="mb-1 flex items-baseline justify-between font-mono text-xs">
+                  <span class="text-muted">{entry.language}</span>
+                  <span class="text-faint">{entry.percent}%</span>
+                </div>
+                <div class="h-1.5 overflow-hidden rounded-full bg-surface">
+                  <div
+                    class="h-full rounded-full bg-accent/80"
+                    style={`width: ${entry.percent}%`}
+                  />
+                </div>
+              </li>
+            ))
+          }
+        </ul>
+        <p class="mt-5 font-mono text-xs text-faint/70">{t('stats.note')}</p>
+      </div>
+    </div>
+  </Reveal>
+</section>

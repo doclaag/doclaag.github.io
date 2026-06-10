@@ -1,0 +1,199 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Semantic palette. Light values live on :root, dark overrides on .dark —
+ * the inline theme script in BaseLayout sets the class before first paint.
+ */
+:root {
+  --c-bg: #fafafa;
+  --c-surface: #f1f1f4;
+  --c-raised: #ffffff;
+  --c-border: #e2e2ea;
+  --c-text: #16161d;
+  --c-muted: #50506a;
+  --c-faint: #75758c;
+  --c-accent: #0f766e;
+  --c-accent-strong: #0d9488;
+  --c-glow: rgba(13, 148, 136, 0.1);
+}
+
+.dark {
+  --c-bg: #0a0a0f;
+  --c-surface: #12121a;
+  --c-raised: #1a1a26;
+  --c-border: #232334;
+  --c-text: #e8e8f2;
+  --c-muted: #a0a0b8;
+  --c-faint: #6b6b85;
+  --c-accent: #2dd4bf;
+  --c-accent-strong: #5eead4;
+  --c-glow: rgba(45, 212, 191, 0.07);
+}
+
+@theme {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-space-grotesk), var(--font-inter), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, 'SFMono-Regular', monospace;
+}
+
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-raised: var(--c-raised);
+  --color-line: var(--c-border);
+  --color-ink: var(--c-text);
+  --color-muted: var(--c-muted);
+  --color-faint: var(--c-faint);
+  --color-accent: var(--c-accent);
+  --color-accent-strong: var(--c-accent-strong);
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background-color: var(--c-accent);
+  color: var(--c-bg);
+}
+
+/* Editorial hairline rule used between sections */
+.hairline {
+  border-color: var(--c-border);
+}
+
+/* Reveal-on-scroll. Elements start visible; the IO script only animates
+   them when motion is allowed, so no-JS and reduced-motion both get content. */
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 0.45s ease-out,
+      transform 0.45s ease-out;
+    transition-delay: var(--reveal-delay, 0ms);
+  }
+
+  .js [data-reveal].is-visible {
+    opacity: 1;
+    transform: none;
+  }
+
+  /* Cross-document view transitions (MPA) — pure CSS, no client router */
+  @view-transition {
+    navigation: auto;
+  }
+
+  ::view-transition-old(root) {
+    animation-duration: 0.18s;
+  }
+
+  ::view-transition-new(root) {
+    animation-duration: 0.18s;
+  }
+}
+
+/* Prose styles for blog posts (kept handwritten — no typography plugin) */
+.prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: var(--c-text);
+}
+
+.prose > * + * {
+  margin-top: 1.25em;
+}
+
+.prose h2,
+.prose h3 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--c-text);
+}
+
+.prose h2 {
+  font-size: 1.5rem;
+  margin-top: 2.25em;
+}
+
+.prose h3 {
+  font-size: 1.2rem;
+  margin-top: 1.75em;
+}
+
+.prose a {
+  color: var(--c-accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: color-mix(in srgb, var(--c-accent) 40%, transparent);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--c-accent);
+}
+
+.prose strong {
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.5em;
+}
+
+.prose ul {
+  list-style: disc;
+}
+
+.prose ol {
+  list-style: decimal;
+}
+
+.prose li + li {
+  margin-top: 0.4em;
+}
+
+.prose blockquote {
+  border-inline-start: 2px solid var(--c-accent);
+  padding-inline-start: 1.25em;
+  color: var(--c-muted);
+  font-style: italic;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 0.25rem;
+  padding: 0.125em 0.375em;
+}
+
+.prose pre {
+  background-color: #12121a !important;
+  border: 1px solid var(--c-border);
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  overflow-x: auto;
+  font-size: 0.875rem;
+  line-height: 1.7;
+}
+
+.prose pre code {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: inherit;
+}

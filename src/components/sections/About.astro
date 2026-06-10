@@ -1,0 +1,38 @@
+---
+import Reveal from '../Reveal.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8" id="about">
+  <Reveal>
+    <SectionHeading index="01" title={t('about.title')} />
+    <div class="grid gap-10 md:grid-cols-2 md:gap-14">
+      <div class="space-y-5 text-base leading-relaxed text-muted">
+        <p>{t('about.p1')}</p>
+        <p>{t('about.p2')}</p>
+      </div>
+      <figure
+        class="rounded-lg border border-line bg-surface p-5 font-mono text-[13px] leading-7"
+        aria-label="about-me.ts"
+      >
+        <figcaption class="mb-3 flex items-center gap-2 text-xs text-faint">
+          <span class="size-2.5 rounded-full bg-line" aria-hidden="true"></span>
+          <span class="size-2.5 rounded-full bg-line" aria-hidden="true"></span>
+          <span class="size-2.5 rounded-full bg-accent/60" aria-hidden="true"></span>
+          <span class="ml-2">about-me.ts</span>
+        </figcaption>
+        <pre class="overflow-x-auto text-muted"><code><span class="text-accent">const</span> luisAlonzo = &#123;
+  location: <span class="text-accent-strong">'Guatemala 🇬🇹'</span>,
+  focus: <span class="text-accent-strong">'Full Stack'</span>,
+  frontend: [<span class="text-accent-strong">'TypeScript'</span>, <span class="text-accent-strong">'React'</span>, <span class="text-accent-strong">'Astro'</span>],
+  backend: [<span class="text-accent-strong">'Laravel'</span>, <span class="text-accent-strong">'Node.js'</span>, <span class="text-accent-strong">'Python'</span>],
+  learning: <span class="text-accent-strong">'always'</span>,
+&#125;;</code></pre>
+      </figure>
+    </div>
+  </Reveal>
+</section>
