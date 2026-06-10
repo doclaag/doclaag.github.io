@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import HomePage from '../../components/sections/HomePage.astro';
+import { useTranslations } from '../../i18n/utils';
+import { personJsonLd } from '../../lib/jsonld';
+
+const t = useTranslations('es');
+---
+
+<BaseLayout
+  title={t('site.title')}
+  description={t('site.description')}
+  altPath="/"
+  jsonLd={personJsonLd()}
+>
+  <HomePage />
+</BaseLayout>

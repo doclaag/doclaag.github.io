@@ -1,0 +1,38 @@
+---
+import Reveal from '../Reveal.astro';
+import SectionHeading from '../SectionHeading.astro';
+import ProjectCard from './ProjectCard.astro';
+import { getFeaturedProjects } from '../../lib/github';
+import { author } from '../../data/site';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const projects = await getFeaturedProjects();
+---
+
+<section class="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 sm:px-8" id="projects">
+  <Reveal>
+    <SectionHeading index="03" title={t('projects.title')} />
+    <p class="-mt-4 mb-10 max-w-xl text-muted">{t('projects.intro')}</p>
+  </Reveal>
+  <div class="grid gap-5 md:grid-cols-2">
+    {
+      projects.map((project, i) => (
+        <Reveal delay={(i % 2) * 80}>
+          <ProjectCard project={project} />
+        </Reveal>
+      ))
+    }
+  </div>
+  <Reveal>
+    <p class="mt-8 text-right">
+      <a
+        href={`${author.github}?tab=repositories`}
+        class="font-mono text-sm text-accent underline-offset-4 hover:underline"
+      >
+        {t('projects.viewAll')} →
+      </a>
+    </p>
+  </Reveal>
+</section>

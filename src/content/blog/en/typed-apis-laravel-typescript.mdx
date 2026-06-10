@@ -1,0 +1,64 @@
+---
+title: 'Typed end to end: sharing API contracts between Laravel and TypeScript'
+description: 'A practical pattern for keeping a Laravel backend and a TypeScript frontend honest with each other without a monorepo rewrite.'
+pubDate: 2026-05-28
+lang: 'en'
+translationKey: 'typed-apis-laravel-typescript'
+---
+
+Most of my projects are a pair: a TypeScript frontend and a backend — sometimes Node, often Laravel. The recurring failure mode is the same everywhere: the backend changes a response shape, the frontend keeps assuming the old one, and nobody notices until production.
+
+Here is the lightweight pattern I use to keep both sides honest.
+
+## 1. Make the backend declare its shapes
+
+In Laravel, every response goes through an API Resource. That is already a contract — it is just not written down anywhere a compiler can see:
+
+```php
+class PatientResource extends JsonResource
+{
+    public function toArray(Request $request): array
+    {
+        return [
+            'id' => $this->id,
+            'fullName' => $this->full_name,
+            'admittedAt' => $this->admitted_at?->toIso8601String(),
+        ];
+    }
+}
+```
+
+## 2. Mirror the contract as a TypeScript type
+
+```ts
+export interface Patient {
+  id: number;
+  fullName: string;
+  admittedAt: string | null;
+}
+```
+
+The key discipline: this type lives in one file per resource, named after the backend resource, and **nothing else in the frontend is allowed to describe API shapes**. Components import the type; they never re-declare fields.
+
+## 3. Validate at the boundary, not everywhere
+
+Types are erased at runtime, so the one place I add runtime validation is the fetch layer:
+
+```ts
+const patientSchema = z.object({
+  id: z.number(),
+  fullName: z.string(),
+  admittedAt: z.string().nullable(),
+});
+
+export async function getPatient(id: number): Promise<Patient> {
+  const res = await api.get(`/patients/${id}`);
+  return patientSchema.parse(res.data);
+}
+```
+
+If the backend drifts, the error happens at the boundary with a clear message — not three components deep as `undefined is not a function`.
+
+## Why not OpenAPI generation?
+
+Code generation from an OpenAPI spec is the heavier, more correct answer, and worth it for big teams. For a two-person project, the mirror-plus-zod pattern costs minutes to maintain and catches the same class of bugs. The point is not the tooling — it is that exactly one place defines each shape on each side, and the boundary checks the handshake.

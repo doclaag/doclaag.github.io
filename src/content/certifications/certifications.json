@@ -1,0 +1,35 @@
+[
+  {
+    "id": "cert-typescript",
+    "name": {
+      "en": "TypeScript: Professional Certification",
+      "es": "TypeScript: Certificación Profesional"
+    },
+    "issuer": "Issuing Platform",
+    "year": 2024,
+    "url": null,
+    "placeholder": true
+  },
+  {
+    "id": "cert-react",
+    "name": {
+      "en": "React: Advanced Course",
+      "es": "React: Curso Avanzado"
+    },
+    "issuer": "Issuing Platform",
+    "year": 2023,
+    "url": null,
+    "placeholder": true
+  },
+  {
+    "id": "cert-laravel",
+    "name": {
+      "en": "Laravel: Web Development",
+      "es": "Laravel: Desarrollo Web"
+    },
+    "issuer": "Issuing Platform",
+    "year": 2022,
+    "url": null,
+    "placeholder": true
+  }
+]

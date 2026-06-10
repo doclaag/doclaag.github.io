@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import Reveal from '../Reveal.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const entries = (await getCollection('certifications')).sort(
+  (a, b) => b.data.year - a.data.year,
+);
+const hasPlaceholders = entries.some((entry) => entry.data.placeholder);
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16 sm:px-8">
+  <Reveal>
+    <SectionHeading index="05" title={t('certs.title')} />
+    {
+      hasPlaceholders && (
+        <p
+          class="-mt-4 mb-10 inline-flex items-center gap-2 rounded-md border border-dashed border-line bg-surface px-3 py-1.5 font-mono text-xs text-faint"
+          title={t('experience.placeholderNote')}
+        >
+          <span class="size-1.5 rounded-full bg-accent" aria-hidden="true" />
+          {t('experience.placeholder')}
+        </p>
+      )
+    }
+    <ul class="divide-y divide-line border-y border-line">
+      {
+        entries.map((entry) => (
+          <li class="flex items-baseline justify-between gap-4 py-4">
+            <div>
+              <h3 class="font-medium text-ink">
+                {entry.data.url ? (
+                  <a
+                    href={entry.data.url}
+                    class="underline-offset-4 transition-colors hover:text-accent hover:underline"
+                  >
+                    {entry.data.name[lang]}
+                  </a>
+                ) : (
+                  entry.data.name[lang]
+                )}
+              </h3>
+              <p class="mt-0.5 text-sm text-muted">{entry.data.issuer}</p>
+            </div>
+            <span class="font-mono text-xs text-faint">{entry.data.year}</span>
+          </li>
+        ))
+      }
+    </ul>
+  </Reveal>
+</section>

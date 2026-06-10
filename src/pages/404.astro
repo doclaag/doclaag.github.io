@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { useTranslations } from '../i18n/utils';
+
+const t = useTranslations('en');
+const tEs = useTranslations('es');
+---
+
+<BaseLayout title={`404 — ${t('notFound.title')}`} description={t('notFound.body')} altPath="/es/">
+  <div class="mx-auto max-w-5xl px-5 py-32 text-center sm:px-8">
+    <p class="font-mono text-sm text-accent">
+      <span class="text-faint">~/luis-alonzo $</span> cd {Astro.url.pathname}
+    </p>
+    <h1 class="mt-6 font-display text-6xl font-bold text-ink">404</h1>
+    <p class="mt-4 text-muted">{t('notFound.body')}</p>
+    <p class="mt-1 text-sm text-faint">{tEs('notFound.body')}</p>
+    <div class="mt-10 flex items-center justify-center gap-4 font-mono text-sm">
+      <a href="/" class="text-accent underline-offset-4 hover:underline">← {t('notFound.back')}</a>
+      <span class="text-faint" aria-hidden="true">·</span>
+      <a href="/es/" class="text-accent underline-offset-4 hover:underline"
+        >← {tEs('notFound.back')}</a
+      >
+    </div>
+  </div>
+</BaseLayout>

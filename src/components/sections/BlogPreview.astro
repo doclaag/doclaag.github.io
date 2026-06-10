@@ -1,0 +1,46 @@
+---
+import { getCollection } from 'astro:content';
+import Reveal from '../Reveal.astro';
+import SectionHeading from '../SectionHeading.astro';
+import FormattedDate from '../FormattedDate.astro';
+import { getLangFromUrl, localizePath, useTranslations } from '../../i18n/utils';
+import { postSlug } from '../../lib/blog';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+const posts = (await getCollection('blog', ({ data }) => data.lang === lang && !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+---
+
+<section class="mx-auto max-w-5xl px-5 py-16 sm:px-8">
+  <Reveal>
+    <SectionHeading index="07" title={t('blog.preview')} />
+    <ul class="divide-y divide-line border-y border-line">
+      {
+        posts.map((post) => (
+          <li>
+            <a
+              href={localizePath(`/blog/${postSlug(post.id)}/`, lang)}
+              class="group flex flex-col gap-1 py-5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-6"
+            >
+              <span class="font-medium text-ink transition-colors group-hover:text-accent">
+                {post.data.title}
+              </span>
+              <FormattedDate date={post.data.pubDate} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-8 text-right">
+      <a
+        href={localizePath('/blog/', lang)}
+        class="font-mono text-sm text-accent underline-offset-4 hover:underline"
+      >
+        {t('blog.viewAll')} →
+      </a>
+    </p>
+  </Reveal>
+</section>

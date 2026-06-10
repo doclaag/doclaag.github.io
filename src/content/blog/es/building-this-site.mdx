@@ -1,0 +1,46 @@
+---
+title: 'Construyendo este sitio con Astro 6 y Tailwind CSS v4'
+description: 'Por qué reconstruí mi portafolio desde un tema de Jekyll hacia Astro 6 con Tailwind v4, i18n integrado y casi cero JavaScript en el cliente.'
+pubDate: 2026-06-10
+lang: 'es'
+translationKey: 'building-this-site'
+---
+
+Mi sitio anterior era un Jekyll de tres archivos: una página markdown, una configuración y un tema remoto. Funcionaba, pero el diseño era de alguien más, cargaba imágenes de estadísticas de terceros muy lentas, y agregar cualquier cosa — un blog, un segundo idioma, una sección de proyectos — significaba pelear contra el tema.
+
+Así que lo reconstruí desde cero con **Astro 6**. Esto es lo que definió el stack.
+
+## Cero JavaScript por defecto
+
+Un portafolio es contenido. Astro renderiza todo a HTML estático en el build y no envía JavaScript a menos que lo pidas. El JS total del lado del cliente en este sitio es menos de un kilobyte: un toggle de tema y un pequeño IntersectionObserver para las animaciones al hacer scroll. Las transiciones de página las maneja CSS puro con view transitions entre documentos — sin router de cliente.
+
+## Tailwind CSS v4, CSS primero
+
+Tailwind v4 eliminó el archivo de configuración en JavaScript. Todo el sistema de diseño vive en un solo archivo CSS:
+
+```css
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-accent: var(--c-accent);
+}
+```
+
+Las variables CSS semánticas cambian entre claro y oscuro con una sola clase `.dark`, y las utilidades de Tailwind las usan automáticamente. Sin `tailwind.config.js`, sin pipeline de plugins.
+
+## i18n integrado
+
+Este sitio es bilingüe: inglés en `/` y español en `/es/`. El enrutamiento i18n integrado de Astro maneja la estructura de URLs, y un pequeño diccionario tipado maneja los textos de la interfaz:
+
+```ts
+const es: Record<UIKey, string> = {
+  /* si falta una clave = error de compilación */
+};
+```
+
+Si agrego un texto en inglés y olvido el de español, el build falla. Ese es el tipo de contabilidad de i18n que quiero que haga un compilador.
+
+## Datos de GitHub en el build
+
+La sección de proyectos combina una lista curada con metadatos en vivo de la API de GitHub — obtenidos una vez por build, nunca en el navegador. Si la API no está disponible, el build usa un snapshot incluido en el repositorio, así que los despliegues nunca fallan. Un build programado semanal mantiene los datos frescos.
+
+El resultado: un sitio con puntuación verde en todo Lighthouse, hosting gratuito en GitHub Pages y, por fin, un diseño que es mío.

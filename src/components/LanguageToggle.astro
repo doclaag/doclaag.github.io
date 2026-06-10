@@ -1,0 +1,22 @@
+---
+import { alternatePath, getLangFromUrl, otherLang, useTranslations } from '../i18n/utils';
+
+interface Props {
+  /** Override when the alternate page is not a mirrored path (e.g. blog posts). */
+  altPath?: string;
+}
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+const href = Astro.props.altPath ?? alternatePath(Astro.url.pathname, lang);
+const target = otherLang(lang);
+---
+
+<a
+  href={href}
+  hreflang={target}
+  aria-label={t('nav.switchLang')}
+  class="grid h-9 place-items-center rounded-md border border-line px-2.5 font-mono text-xs tracking-wide text-muted uppercase transition-colors hover:border-accent hover:text-accent"
+>
+  {target}
+</a>

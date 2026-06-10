@@ -1,0 +1,44 @@
+---
+import Reveal from '../Reveal.astro';
+import SectionHeading from '../SectionHeading.astro';
+import { author, socials } from '../../data/site';
+import { getLangFromUrl, useTranslations } from '../../i18n/utils';
+
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+---
+
+<section class="mx-auto max-w-5xl scroll-mt-20 px-5 py-16 pb-24 sm:px-8" id="contact">
+  <Reveal>
+    <SectionHeading index="08" title={t('contact.title')} />
+    <div class="max-w-xl">
+      <p class="text-muted">{t('contact.intro')}</p>
+      <div class="mt-8 flex flex-wrap items-center gap-4">
+        <a
+          href={`mailto:${author.email}`}
+          class="rounded-md bg-accent px-5 py-2.5 font-mono text-sm font-medium text-bg transition-colors hover:bg-accent-strong"
+        >
+          {t('contact.emailCta')}
+        </a>
+        <span class="font-mono text-sm text-faint select-all">{author.email}</span>
+      </div>
+      <ul class="mt-8 flex items-center gap-5">
+        {
+          socials.map((social) => (
+            <li>
+              <a
+                href={social.url}
+                class="flex items-center gap-2 font-mono text-xs text-muted transition-colors hover:text-accent"
+              >
+                <svg class="size-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d={social.iconPath} />
+                </svg>
+                {social.name}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </Reveal>
+</section>
